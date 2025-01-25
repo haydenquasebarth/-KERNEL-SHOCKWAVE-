@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Credits</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-image: url('https://cdn.pixabay.com/photo/2017/05/29/18/22/matrix-2354492_1280.jpg');
+            background-size: calc(100% - 40px);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        #top-banner {
+            background-color: black;
+            width: 100%;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        #top-banner h1 {
+            font-size: 50px;
+            color: white;
+            text-shadow: 
+                -2px -2px 0 #000, 
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                2px 2px 0 #000;
+            margin: 0;
+        }
+
+        #credits-text {
+            text-align: center;
+            font-size: 20px;
+            color: white;
+            margin: -10px 0 20px;
+        }
+
+        #sidebar-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+        }
+
+        #sidebar {
+            width: 150px;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #sidebar-safety {
+            width: 150px;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #sidebar h2, #sidebar-safety h2 {
+            color: green;
+            text-align: center;
+            font-size: 22px;
+            margin: 0;
+            padding-bottom: 10px;
+        }
+
+        #sidebar a, #sidebar-safety label {
+            color: green;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #sidebar a:hover, #sidebar-safety label:hover {
+            background-color: #555;
+        }
+
+        #sidebar .divider, #sidebar-safety .divider {
+            border-top: 1px solid #444;
+            margin: 10px 0;
+        }
+
+        #content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            margin-right: 320px;
+            color: white;
+        }
+
+        /* New box style for embedding the game */
+        #embed-box {
+            width: 80%;
+            max-width: 800px;
+            height: 500px;
+            border: 3px solid #00FF00;
+            margin: 20px auto;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Container with Task Bar and Safety -->
+    <div id="sidebar-container">
+        <div id="sidebar">
+            <h2>Task Bar</h2>
+            <a href="index.html">Home Page</a>
+            <a href="credits.html">Credits</a>
+            <div class="divider"></div>
+            <h2>Games</h2>
+            <div class="divider"></div>
+            <a href="1v1lol.html">1v1lol</a>
+        </div>
+
+        <div style="width: 2px; background-color: white; margin: 0 5px;"></div>
+        <div id="sidebar-safety">
+            <h2>Safety</h2>
+            <div class="divider"></div>
+            <label for="safety-toggle">
+                <input type="checkbox" id="safety-toggle">
+                Toggle Safety
+            </label>
+            <div class="divider"></div>
+            <p id="safety-status">Press "P" to open a research website (Safety is OFF)</p>
+        </div>
+    </div>
+
+    <div id="top-banner">
+        <h1>$KERNELSHOCKWAVE$</h1>
+    </div>
+
+    <div id="credits-text">
+        1v1.lol
+    </div>
+
+    <!-- Embedded Game Box -->
+    <div id="embed-box">
+        <iframe src="https://1v1lolunblocked.com/games/1v1-lol/index.html" title="Embedded Game"></iframe>
+    </div>
+
+    <script>
+        const safetyToggle = document.getElementById('safety-toggle');
+        const safetyStatus = document.getElementById('safety-status');
+
+        const researchWebsites = [
+            'https://www.google.com',
+            'https://www.wikipedia.org',
+            'https://www.jstor.org',
+            'https://www.sciencedirect.com',
+            'https://www.acs.org',
+            'https://www.nature.com',
+            'https://www.researchgate.net'
+        ];
+
+        safetyToggle.addEventListener('change', () => {
+            if (safetyToggle.checked) {
+                safetyStatus.textContent = 'Press "P" to open a research website (Safety is ON)';
+            } else {
+                safetyStatus.textContent = 'Press "P" to open a research website (Safety is OFF)';
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'p' || event.key === 'P') {
+                if (safetyToggle.checked) {
+                    const randomWebsite = researchWebsites[Math.floor(Math.random() * researchWebsites.length)];
+                    window.open(randomWebsite, '_blank');
+                    window.close();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
