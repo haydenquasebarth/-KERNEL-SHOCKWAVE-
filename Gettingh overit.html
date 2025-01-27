@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>$KERNEL SHOCKWAVE$</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        body {
+            background-image: linear-gradient(145deg, #0f2027, #203a43, #2c5364), url('https://cdn.pixabay.com/photo/2017/05/29/18/22/matrix-2354492_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        #top-banner {
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
+            border-bottom: 2px solid #58a6ff;
+        }
+
+        #top-banner h1 {
+            font-size: 3rem;
+            color: #58a6ff;
+            text-shadow: 0 0 10px #58a6ff, 0 0 20px #58a6ff;
+        }
+
+        #sidebars-container {
+            display: flex;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            z-index: 10;
+        }
+
+        #sidebar, #sidebar-safety {
+            background-color: rgba(0, 0, 0, 0.85);
+            width: 200px;
+            padding: 20px;
+            overflow-y: auto;
+            border-left: 2px solid #58a6ff;
+            box-shadow: -2px 0px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        #sidebar h2, #sidebar-safety h2 {
+            color: #58a6ff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #sidebar a, #sidebar-safety label {
+            color: #c9d1d9;
+            font-size: 1rem;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        #sidebar a:hover, #sidebar-safety label:hover {
+            background-color: #58a6ff;
+            color: #0d1117;
+        }
+
+        #content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            margin-right: 180px;
+            color: #c9d1d9;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .left-section, .right-section, .more-right-section {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            width: calc(33% - 20px);
+            color: #c9d1d9;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .divider-in-box {
+            width: 100%;
+            height: 2px;
+            background-color: #58a6ff;
+            margin: 10px 0;
+        }
+
+        #safety-status {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #c9d1d9;
+        }
+
+        .game-embed-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        iframe {
+            width: 100%;
+            height: 600px;
+            border-radius: 10px;
+        }
+
+        /* Fullscreen button styling */
+        .fullscreen-button {
+            background-color: #58a6ff;
+            color: #0d1117;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .fullscreen-button:hover {
+            background-color: #0d1117;
+            color: #58a6ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="top-banner">
+        <h1>$KERNEL SHOCKWAVE$</h1>
+    </div>
+
+    <div id="sidebars-container">
+        <div id="sidebar">
+            <h2>Task Bar</h2>
+            <a href="index.html">Home Page</a>
+            <a href="Credits-km.html">Credits</a>
+            <h2>Utilities</h2>
+            <a href="Youtube.html">YouTube</a>
+            <a href="breakpc.html">break pc</a>
+            <h2>Games</h2>
+            <a href="1v1lol.html">1v1.lol</a>
+            <a href="drift-hunters.html">Drift Hunters</a>
+            <a href="geometry-dash.html">Geometry Dash</a>
+            <a href="driftboss.html">Drift Boss</a>
+            <a href="thorn-and-balloons.html">thorn and balloons</a>
+            <a href="Gettingh overit.html">Getting Over It</a>
+            <a href="buckshoot.html">buckshot-roulette</a>
+            <a href="Hoddmath.html">Game Website</a>
+
+        </div>
+
+        <div id="sidebar-safety">
+            <h2>Safety</h2>
+            <label for="safety-toggle">
+                <input type="checkbox" id="safety-toggle">
+                Toggle Safety
+            </label>
+            <p id="safety-status">Press "P" to open a research website (Safety is OFF)</p>
+        </div>
+    </div>
+
+    <div id="content">
+        <!-- Page-specific content goes here -->
+        <div id="credits-content">
+
+        </div>
+
+        <!-- Drift Hunters Embed -->
+        <div class="game-embed-box">
+            <h3>Getting Over It</h3>
+            <iframe id="game-iframe" src="https://juststudy-ce.github.io/studyguide/goi/index.html" frameborder="0"></iframe>
+            <button class="fullscreen-button" onclick="toggleFullScreen()">Go Full Screen</button>
+        </div>
+    </div>
+
+    <script>
+        const safetyToggle = document.getElementById('safety-toggle');
+        const safetyStatus = document.getElementById('safety-status');
+
+        const researchWebsites = [
+            'https://www.wikipedia.org',
+            'https://www.jstor.org',
+            'https://www.sciencedirect.com',
+            'https://www.acs.org',
+            'https://www.nature.com',
+            'https://www.researchgate.net'
+        ];
+
+        safetyToggle.addEventListener('change', () => {
+            safetyStatus.textContent = safetyToggle.checked
+                ? 'Press "P" to open a research website (Safety is ON)'
+                : 'Press "P" to open a research website (Safety is OFF)';
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if ((event.key === 'p' || event.key === 'P') && safetyToggle.checked) {
+                const randomWebsite = researchWebsites[Math.floor(Math.random() * researchWebsites.length)];
+                window.open(randomWebsite, '_blank');
+            }
+        });
+
+        // Function to toggle fullscreen for the iframe
+        function toggleFullScreen() {
+            const iframe = document.getElementById('game-iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>

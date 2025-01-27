@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>$KERNEL SHOCKWAVE$</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-size: 16px;
+        }
+
+
+        body {
+            background-image: linear-gradient(145deg, #0f2027, #203a43, #2c5364), url('https://cdn.pixabay.com/photo/2017/05/29/18/22/matrix-2354492_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        #top-banner {
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
+            border-bottom: 2px solid #58a6ff;
+        }
+
+        #top-banner h1 {
+            font-size: 3rem;
+            color: #58a6ff;
+            text-shadow: 0 0 10px #58a6ff, 0 0 20px #58a6ff;
+        }
+
+        #settings-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 15;
+        }
+
+        #settings-button {
+            background-color: #58a6ff;
+            color: #0d1117;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #settings-menu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: #c9d1d9;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        #settings-menu a {
+            display: block;
+            color: #58a6ff;
+            text-decoration: none;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        #settings-menu a:hover {
+            background-color: #58a6ff;
+            color: #0d1117;
+        }
+
+        #volume-slider {
+            margin-top: 10px;
+        }
+
+        #sidebars-container {
+            display: flex;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            z-index: 10;
+        }
+
+        #sidebar, #sidebar-safety {
+            background-color: rgba(0, 0, 0, 0.85);
+            width: 200px;
+            padding: 20px;
+            overflow-y: auto;
+            border-left: 2px solid #58a6ff;
+            box-shadow: -2px 0px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        #sidebar h2, #sidebar-safety h2 {
+            color: #58a6ff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #sidebar a, #sidebar-safety label {
+            color: #c9d1d9;
+            font-size: 1rem;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        #sidebar a:hover, #sidebar-safety label:hover {
+            background-color: #58a6ff;
+            color: #0d1117;
+        }
+
+        #content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px;
+            overflow-y: auto;
+            margin-right: 220px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .left-section, .right-section, .more-right-section, .chat-section {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            color: #c9d1d9;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .left-section, .right-section, .more-right-section {
+            width: calc(33% - 20px);
+            height: 100%;
+        }
+
+        .chat-section {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            width: calc(66% - 20px);
+            color: #c9d1d9;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+            margin-left: 0;
+        }
+
+        .divider-in-box {
+            width: 100%;
+            height: 2px;
+            background-color: #58a6ff;
+            margin: 10px 0;
+        }
+
+        #safety-status {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #c9d1d9;
+        }
+
+        #chat-room {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            color: #c9d1d9;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            z-index: 20;
+        }
+
+        #chat-room h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #58a6ff;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 0 0 5px #58a6ff, 0 0 10px #58a6ff;
+        }
+
+        #chat-messages {
+            height: 200px;
+            overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        #chat-input {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        #message-box {
+            width: 80%;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #333;
+            border: none;
+            color: #c9d1d9;
+        }
+
+        #send-button {
+            background-color: #58a6ff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            color: #0d1117;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #send-button:hover {
+            background-color: #1d75b3;
+        }
+
+        #name-prompt {
+            color: #58a6ff;
+            font-weight: bold;
+        }
+
+        #chat-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            z-index: 30;
+        }
+
+        #chat-overlay p {
+            color: #ff4c4c;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff4c4c, 0 0 20px #ff4c4c;
+        }
+
+        #chat-input input:disabled,
+        #chat-input button:disabled {
+            background-color: #444;
+            color: #888;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div id="top-banner">
+        <h1>$KERNEL SHOCKWAVE$</h1>
+    </div>
+
+    <div id="settings-container">
+        <button id="settings-button">Settings</button>
+        <div id="settings-menu">
+            <a href="#">soon</a>
+            <a href="#">soon</a>
+            <a href="#">soon</a>
+            <label for="volume-slider">Volume: </label>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+        </div>
+    </div>
+
+    <div id="sidebars-container">
+        <div id="sidebar">
+            <h2>Task Bar</h2>
+            <a href="index.html">Home Page</a>
+            <a href="Credits-km.html">Credits</a>
+            <h2>Utilities</h2>
+            <a href="Youtube.html">YouTube</a>
+            <a href="breakpc.html">break pc</a>
+            <h2>Games</h2>
+            <a href="1v1lol.html">1v1.lol</a>
+            <a href="drift-hunters.html">Drift Hunters</a>
+            <a href="geometry-dash.html">Geometry Dash</a>
+            <a href="driftboss.html">Drift Boss</a>
+            <a href="thorn-and-balloons.html">thorn and balloons</a>
+            <a href="Gettingh overit.html">Getting Over It</a>
+            <a href="buckshoot.html">buckshot-roulette</a>
+            <a href="Hoddmath.html">Game Website</a>
+        </div>
+
+        <div id="sidebar-safety">
+            <h2>Safety</h2>
+            <label for="safety-toggle">
+                <input type="checkbox" id="safety-toggle">
+                Toggle Safety
+            </label>
+            <p id="safety-status">Press "P" to open a research website (Safety is OFF)</p>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="container">
+            <div class="left-section">
+                <p>Who is this website for?</p>
+                <div class="divider-in-box"></div>
+                <p>his website is a platform for gaming and hacking. The purpose of this site is to allow you to bypass school system restrictions and play games on your computer. There will be many updates and bypass methods coming soon. This website demonstrates how students can stand up against rules set by teachers and parents. It will feature some unique tools that other websites don’t have, such as a panic button. When pressed, the panic button will redirect you to a website that tricks your teacher if they try to view your screen. And much more!</p>
+            </div>
+            <div class="more-right-section">
+                <p>Update Log - 1.5.0</p>
+                <div class="divider-in-box"></div>
+                <p>add more games...</p>
+            </div>
+            <div class="right-section">
+                <h2>Tutorial</h2>
+                <div class="divider-in-box"></div>
+                <p>Coming soon.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="chat-room">
+        <h2>Chat Room</h2>
+        <div id="chat-overlay">
+            <p>Out of Order</p>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="chat-input">
+            <input type="text" id="message-box" placeholder="Type a message..." disabled />
+            <button id="send-button" disabled>Send</button>
+        </div>
+        <div id="name-prompt"></div>
+    </div>
+
+    <audio id="background-audio" loop autoplay>
+        <source src="your-audio-file.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const settingsButton = document.getElementById('settings-button');
+        const settingsMenu = document.getElementById('settings-menu');
+        const volumeSlider = document.getElementById('volume-slider');
+        const backgroundAudio = document.getElementById('background-audio');
+
+        settingsButton.addEventListener('click', () => {
+            settingsMenu.style.display = settingsMenu.style.display === 'none' || settingsMenu.style.display === '' ? 'block' : 'none';
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            backgroundAudio.volume = e.target.value;
+        });
+
+        const safetyToggle = document.getElementById('safety-toggle');
+        const safetyStatus = document.getElementById('safety-status');
+
+        safetyToggle.addEventListener('change', () => {
+            safetyStatus.innerText = safetyToggle.checked ? 'Safety is ON' : 'Safety is OFF';
+        });
+    </script>
+</body>
+</html>
